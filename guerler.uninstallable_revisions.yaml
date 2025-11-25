@@ -1,0 +1,5 @@
+tools:
+- name: hhsearch
+  owner: guerler
+  removed_revisions:
+  - 0dd6880ff950

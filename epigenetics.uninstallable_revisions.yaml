@@ -1,0 +1,17 @@
+tools:
+- name: metilene
+  owner: rnateam
+  removed_revisions:
+  - cd253831a014
+- name: bwameth
+  owner: iuc
+  removed_revisions:
+  - b4e6819b25ef
+- name: hifive
+  owner: sauria
+  removed_revisions:
+  - 4a978cf8cf92
+- name: chipeakanno_annopeaks
+  owner: kpbioteam
+  removed_revisions:
+  - 6f52c0dc56d4

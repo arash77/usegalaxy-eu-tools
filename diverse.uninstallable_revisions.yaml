@@ -1,0 +1,21 @@
+tools:
+- name: srnapipe
+  owner: brasset_jensen
+  removed_revisions:
+  - 71d5983dd41e
+- name: table_pandas_arithmetics
+  owner: recetox
+  removed_revisions:
+  - d4bacc06365e
+- name: table_scipy_interpolate
+  owner: recetox
+  removed_revisions:
+  - 0112f08c95ed
+- name: table_pandas_transform
+  owner: recetox
+  removed_revisions:
+  - b722dba91064
+- name: fbqs_integrator
+  owner: maciek
+  removed_revisions:
+  - 545d37b03fc7
