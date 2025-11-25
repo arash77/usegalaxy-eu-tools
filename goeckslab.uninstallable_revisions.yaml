@@ -1,0 +1,5 @@
+tools:
+- name: mesmer
+  owner: goeckslab
+  removed_revisions:
+  - c60b810d570d
