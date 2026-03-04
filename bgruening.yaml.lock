@@ -91,6 +91,7 @@ tools:
   revisions:
   - 60f7e2a6b9c7
   - 95fb5712344f
+  - bf5121c5c2be
   tool_panel_section_label: Convert Formats
 - name: sambamba_flagstat
   owner: bgruening
@@ -175,6 +176,7 @@ tools:
   revisions:
   - '392811378515'
   - 53dd00a4ab68
+  - 54a68f38cf3f
   - 7d9ee8cd14b8
   - 840822c1e84a
   tool_panel_section_label: Assembly
@@ -307,12 +309,14 @@ tools:
 - name: 3dtrees_segmentanytree
   owner: bgruening
   revisions:
+  - 369757ee56e4
   - 6f80b2dfb7d4
   tool_panel_section_label: GIS Data Handling
 - name: 3dtrees_detailview
   owner: bgruening
   revisions:
   - 51bb974cfbb2
+  - a4e765e5398e
   tool_panel_section_label: GIS Data Handling
 - name: 3dtrees_standardization
   owner: bgruening
@@ -342,11 +346,23 @@ tools:
   owner: bgruening
   revisions:
   - 384ed4cad819
+  - 9fae02363d19
+  - b5220726f15a
   tool_panel_section_label: GIS Data Handling
 - name: 3dtrees_py3dtiles
   owner: bgruening
   revisions:
   - ecbb700489af
+  tool_panel_section_label: GIS Data Handling
+- name: 3dtrees_potree
+  owner: bgruening
+  revisions:
+  - bd474d8124e3
+  tool_panel_section_label: GIS Data Handling
+- name: 3dtrees_raycloudtools
+  owner: bgruening
+  revisions:
+  - 6d1330bc4774
   tool_panel_section_label: GIS Data Handling
 - name: jbrowse2
   owner: fubar
@@ -397,6 +413,7 @@ tools:
   - 5251ce4c4a11
   - 6b840482cc25
   - 9186100e75b5
+  - d54f702c8909
   - eda6dfae9617
   tool_panel_section_label: Imaging
 - name: cellposesam
@@ -907,6 +924,7 @@ tools:
   revisions:
   - 1aba57a5a716
   - 28e902e3d8d6
+  - 99898a312165
   tool_panel_section_label: Machine Learning
 - name: black_forest_labs_flux
   owner: bgruening
@@ -932,6 +950,16 @@ tools:
   - 9e83243823d9
   - cd355aa0bbcf
   tool_panel_section_label: Mapping
+- name: search_protein_embed_query
+  owner: bgruening
+  revisions:
+  - f8645e707fd8
+  tool_panel_section_label: NCBI Blast
+- name: search_protein_search_database
+  owner: bgruening
+  revisions:
+  - 6083fd50e6a3
+  tool_panel_section_label: NCBI Blast
 - name: combine_metaphlan2_humann2
   owner: bebatut
   revisions:
@@ -1002,6 +1030,16 @@ tools:
   - 0fccc65dcb0b
   - b7edb37100af
   tool_panel_section_label: Metagenomic Analysis
+- name: kmetashot
+  owner: bgruening
+  revisions:
+  - 3ee493cd606c
+  tool_panel_section_label: Metagenomic Analysis
+- name: kmetashot_build_database
+  owner: bgruening
+  revisions:
+  - 22847889f95e
+  tool_panel_section_label: Metagenomic Analysis
 - name: mafft
   owner: rnateam
   revisions:
@@ -1047,6 +1085,11 @@ tools:
   - bec636361cfd
   - de5b3d8f5b90
   tool_panel_section_label: Nanopore
+- name: carveme
+  owner: bgruening
+  revisions:
+  - 6167704e1d34
+  tool_panel_section_label: Other Tools
 - name: dewseq
   owner: rnateam
   revisions:

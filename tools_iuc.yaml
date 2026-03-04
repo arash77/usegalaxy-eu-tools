@@ -1340,6 +1340,10 @@ tools:
     owner: iuc
     tool_panel_section_label: FASTA/FASTQ
 
+  - name: seqkit_grep
+    owner: iuc
+    tool_panel_section_label: FASTA/FASTQ
+
   - name: seqkit_head
     owner: iuc
     tool_panel_section_label: FASTA/FASTQ
@@ -2011,6 +2015,10 @@ tools:
     owner: iuc
     tool_panel_section_label: Mapping
 
+  - name: chromap
+    owner: iuc
+    tool_panel_section_label: Mapping
+
   - name: hisat2
     owner: iuc
     tool_panel_section_label: Mapping
@@ -2463,6 +2471,10 @@ tools:
     owner: devteam
     tool_panel_section_label: Metagenomic Analysis
 
+  - name: fur
+    owner: iuc
+    tool_panel_section_label: Metagenomic Analysis
+
   - name: gi2taxonomy
     owner: devteam
     tool_panel_section_label: Metagenomic Analysis
@@ -2904,6 +2916,14 @@ tools:
     tool_panel_section_label: Metagenomic Analysis
 
   - name: vapor
+    owner: iuc
+    tool_panel_section_label: Metagenomic Analysis
+
+  - name: vcontact2
+    owner: iuc
+    tool_panel_section_label: Metagenomic Analysis
+
+  - name: vcontact2_gene2genome
     owner: iuc
     tool_panel_section_label: Metagenomic Analysis
 
@@ -4096,6 +4116,10 @@ tools:
     owner: iuc
     tool_panel_section_label: Quality Control
 
+  - name: qualifilter
+    owner: iuc
+    tool_panel_section_label: Quality Control
+
 # RAD-SEQ
 
   - name: bayescan
@@ -4592,6 +4616,10 @@ tools:
     tool_panel_section_label: SAM/BAM
 
   - name: samtools_consensus
+    owner: iuc
+    tool_panel_section_label: SAM/BAM
+
+  - name: samtools_collate
     owner: iuc
     tool_panel_section_label: SAM/BAM
 
@@ -5454,6 +5482,22 @@ tools:
     tool_panel_section_label: Variant Calling
 
   - name: gatk4_mutect2
+    owner: iuc
+    tool_panel_section_label: Variant Calling
+
+  - name: gatk4_split_n_cigar_reads
+    owner: iuc
+    tool_panel_section_label: Variant Calling
+
+  - name: gatk4_base_recalibrator
+    owner: iuc
+    tool_panel_section_label: Variant Calling
+
+  - name: gatk4_applybqsr
+    owner: iuc
+    tool_panel_section_label: Variant Calling
+
+  - name: gatk4_haplotype_caller
     owner: iuc
     tool_panel_section_label: Variant Calling
 

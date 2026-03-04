@@ -43,6 +43,7 @@ tools:
   - 3f3783846dc0
   - 70316d792fc9
   - 77f7159d775a
+  - 99e0ef91ea5e
   - b1c2c210813c
   tool_panel_section_label: Imaging
 - name: 2d_simple_filter
@@ -118,6 +119,7 @@ tools:
   - 7a415a2ea490
   - 7fd8dba15bd3
   - 9b4830300f3a
+  - fc3724b4f841
   tool_panel_section_label: Imaging
 - name: rfove
   owner: imgteam
@@ -208,6 +210,7 @@ tools:
   owner: imgteam
   revisions:
   - 65210e69cf95
+  - 7b93ce5ec3ee
   - b30aa285ac0a
   - f3fad67af22c
   - fd4293bee0dc
@@ -218,6 +221,7 @@ tools:
   - 004c57179c61
   - 00feb1ecd040
   - 2dc244356765
+  - 91dfd38a97ae
   - c54cf4ce6baf
   - e0af18405e37
   tool_panel_section_label: Imaging
@@ -422,6 +426,7 @@ tools:
   - 85edbb7a436b
   - b07f4839ca77
   - f3360fbeda64
+  - fa8ce46a95bb
   - fcadded98e61
   tool_panel_section_label: Imaging
 - name: image_info
@@ -672,6 +677,7 @@ tools:
   owner: imgteam
   revisions:
   - 06eac2d1a8a9
+  - 0eec07359840
   - 4634764e6e2b
   - 57f0914ddb7b
   tool_panel_section_label: Collection Operations
