@@ -1,22 +1,23 @@
 import sys
+import requests
 import yaml
 
-from bioblend import toolshed 
-
-ts = toolshed.ToolShedInstance(url='https://toolshed.g2.bx.psu.edu')
+TOOLSHED_API = "https://toolshed.g2.bx.psu.edu/api/repositories"
 fn = sys.argv[1]
 
 # never mind about fancy yaml linting, let's just make sure the files are openable
-sys.stdout.write('Checking modified yaml file {}...\n'.format(fn))
-with open(fn) as f: 
-    yml = [n['name'] for n in yaml.safe_load(f)['tools']]
+sys.stdout.write("Checking modified yaml file {}...\n".format(fn))
+with open(fn) as f:
+    yml = [(n["name"], n.get("owner", "iuc")) for n in yaml.safe_load(f)["tools"]]
 
-with open('{}.lock'.format(fn)) as f:
-    yml_lock = [n['name'] for n in yaml.safe_load(f)['tools']]
+with open("{}.lock".format(fn)) as f:
+    yml_lock = {n["name"] for n in yaml.safe_load(f)["tools"]}
 
-new_tools = [n for n in yml if n not in yml_lock]
+new_tools = [(name, owner) for name, owner in yml if name not in yml_lock]
 
-for tool in new_tools:  # check all new tools are in the tool shed
-    sys.stdout.write('Checking new tool {} is in the toolshed...\n'.format(tool))
-    search_hits = [hit['repository']['name'] for hit in ts.repositories.search_repositories(tool,page_size=600)['hits']]
-    assert tool in search_hits, '{} not in toolshed.'.format(tool)
+for name, owner in new_tools:  # check all new tools are in the tool shed
+    sys.stdout.write("Checking new tool {} is in the toolshed...\n".format(name))
+    resp = requests.get(TOOLSHED_API, params={"name": name, "owner": owner}, timeout=30)
+    resp.raise_for_status()
+    results = resp.json()
+    assert any(r["name"] == name for r in results), "{} not in toolshed.".format(name)
