@@ -370,7 +370,7 @@ class IUCToolSyncer:
             hits = resp.json().get("hits", [])
             exists = any(
                 hit["repository"]["name"] == name
-                and hit["repository"]["owner"] == owner
+                and hit["repository"].get("repo_owner_username", hit["repository"].get("owner")) == owner
                 for hit in hits
             )
             return tool, exists
