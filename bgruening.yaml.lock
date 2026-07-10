@@ -426,6 +426,7 @@ tools:
 - name: 3dtrees_potree
   owner: bgruening
   revisions:
+  - 0c99fafe841d
   - 32e076a33f8f
   - 4b51d3803987
   - a5b16cf86c02
