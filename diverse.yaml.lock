@@ -93,3 +93,8 @@ tools:
   revisions:
   - 502208b90cfe
   tool_panel_section_label: Metagenomic Analysis
+- name: regex_find_replace
+  owner: jjohnson
+  revisions:
+  - 9ea374bb0350
+  tool_panel_section_label: Other Tools
