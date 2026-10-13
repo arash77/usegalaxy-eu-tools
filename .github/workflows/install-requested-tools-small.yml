@@ -1,0 +1,42 @@
+# Demo for galaxyproject/ephemeris#241: the example from the ephemeris docs, run on pushes to this
+# branch, with ephemeris from the pull request.
+# Installs the tool list into Galaxy whenever it changes on the default branch,
+# for example when a tool installation request pull request is merged. The next
+# run of tool-installation-requests.yml then tells the requester that the tools
+# are installed. See the consume-tool-installation-requests page of the
+# ephemeris docs.
+name: Install tools
+
+on:
+  push:
+    branches: [tool-requests-small]
+    paths: [requested_tools.yaml]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: install-tools
+
+jobs:
+  install:
+    name: Install the tool list
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+    env:
+      EPHEMERIS_GALAXY: ${{ vars.EPHEMERIS_GALAXY }}
+      TOOLS_FILE: requested_tools.yaml
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.12"
+      - run: pip install "git+https://github.com/arash77/ephemeris@feature/tool-installation-request-consumer"
+      - name: Install tools
+        env:
+          EPHEMERIS_API_KEY: ${{ secrets.GALAXY_ADMIN_API_KEY }}
+        run: shed-tools install --tools-file "$TOOLS_FILE"
