@@ -28,7 +28,9 @@ jobs:
     env:
       EPHEMERIS_GALAXY: ${{ vars.EPHEMERIS_GALAXY }}
       APPLY_COMMAND: python3 .github/add-requested-tools.py
-      EMIT_OPTIONS: --panel-label 'Other Tools'
+      EMIT_OPTIONS: >-
+        --panel-label 'Other Tools'
+        --wrapper-request-url 'https://github.com/bgruening/galaxytools/issues/new?template=tool-request.yml&title={title}&tool-name={name}&description={description}&links={url}'
     steps:
       - uses: actions/checkout@v7.0.1
         with:
