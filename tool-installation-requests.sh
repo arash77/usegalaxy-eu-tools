@@ -92,8 +92,10 @@ if [ -n "$(git status --porcelain)" ]; then
     exit 1
 fi
 base=$(git rev-parse HEAD)
+start=$(git symbolic-ref --quiet --short HEAD || echo "$base")
 work=$(mktemp -d)
-trap 'rm -rf "$work"' EXIT
+# Leave the checkout on the branch it was on, which the next run reads BASE_BRANCH from.
+trap 'git checkout --quiet --force "$start"; git clean --quiet --force -d; rm -rf "$work"' EXIT
 
 requests() { consume-tool-installation-requests "$@"; }
 uri() { jq -rn --arg value "$1" '$value | @uri'; }
