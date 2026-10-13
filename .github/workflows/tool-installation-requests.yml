@@ -1,0 +1,47 @@
+# Demo of the tool installation request script from galaxyproject/ephemeris#241.
+# It is the example workflow from the ephemeris docs, except that it runs on
+# pushes to this branch, installs ephemeris from the pull request, and adds the
+# requested tools with .github/add-requested-tools.py.
+name: Tool installation requests
+
+on:
+  push:
+    branches: [tool-requests-demo]
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: tool-installation-requests
+
+jobs:
+  requests:
+    name: Handle tool installation requests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write # push a branch for each pull request
+      issues: write # open issues
+      pull-requests: write # open pull requests
+    env:
+      EPHEMERIS_GALAXY: ${{ vars.EPHEMERIS_GALAXY }}
+      APPLY_COMMAND: python3 .github/add-requested-tools.py
+      EMIT_OPTIONS: --panel-label 'Other Tools'
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.12"
+      - run: pip install "git+https://github.com/arash77/ephemeris@feature/tool-installation-request-consumer"
+      - name: Open issues and pull requests
+        env:
+          EPHEMERIS_API_KEY: ${{ secrets.GALAXY_ADMIN_API_KEY }}
+          FORGE_TOKEN: ${{ github.token }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          bash .github/tool-installation-requests.sh

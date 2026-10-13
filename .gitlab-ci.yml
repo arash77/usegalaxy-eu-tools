@@ -1,0 +1,20 @@
+# Demo of the tool installation request script from galaxyproject/ephemeris#241.
+# It is the example job from the ephemeris docs, except that it installs
+# ephemeris from the pull request, and adds the requested tools with
+# .github/add-requested-tools.py.
+tool-installation-requests:
+  image: python:3.12
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+  resource_group: tool-installation-requests
+  timeout: 30 minutes
+  variables:
+    APPLY_COMMAND: python3 .github/add-requested-tools.py
+    EMIT_OPTIONS: --panel-label 'Other Tools'
+    # EPHEMERIS_GALAXY, EPHEMERIS_API_KEY and FORGE_TOKEN come from CI/CD variables.
+  script:
+    - apt-get update -qq && apt-get install -qq -y jq > /dev/null
+    - pip install "git+https://github.com/arash77/ephemeris@feature/tool-installation-request-consumer"
+    - git config user.name "Tool installation requests"
+    - git config user.email "noreply@$CI_SERVER_HOST"
+    - bash .github/tool-installation-requests.sh
