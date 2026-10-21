@@ -1,0 +1,15 @@
+install_repository_dependencies: true
+install_resolver_dependencies: true
+tools:
+- name: regex_find_replace
+  owner: jjohnson
+  tool_shed_url: https://toolshed.g2.bx.psu.edu/
+  tool_panel_section_label: Tools from user request
+  revisions:
+  - 9ea374bb0350
+- name: fastp
+  owner: iuc
+  tool_shed_url: https://toolshed.g2.bx.psu.edu/
+  tool_panel_section_label: Tools from user request
+  revisions:
+  - 68386e630362
