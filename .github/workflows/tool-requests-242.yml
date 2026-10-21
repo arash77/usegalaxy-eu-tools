@@ -1,0 +1,51 @@
+# Tests the scheduled job example from galaxyproject/ephemeris#242 against a local Galaxy.
+name: Tool installation requests (ephemeris#242 test)
+
+on:
+  push:
+    branches: [tool-requests-242]
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: tool-installation-requests
+
+jobs:
+  requests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      EPHEMERIS_GALAXY: ${{ vars.EPHEMERIS_GALAXY }}
+      EPHEMERIS_API_KEY: ${{ secrets.GALAXY_ADMIN_API_KEY }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.12"
+      - run: pip install "git+https://github.com/arash77/ephemeris@tool-requests-242-test"
+      - name: Handle new requests (the docs example)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          consume-tool-installation-requests emit > requests.json
+          git switch -c "tool-requests-$(date +%s)"
+          added=$(consume-tool-installation-requests render-yaml --tools-file requested_tools.yaml -o requested_tools.yaml < requests.json)
+          if [ -n "$added" ]; then
+              git add requested_tools.yaml
+              git commit -m "Install requested tools"
+              git push origin HEAD
+              url=$(gh pr create --fill --base tool-requests-242)
+              consume-tool-installation-requests mark-seen $added
+              consume-tool-installation-requests reply --url "$url" $added
+          fi
+          others=$(jq -r '.[].notification_id' requests.json | grep -vxF "$added" || true)
+          [ -z "$others" ] || consume-tool-installation-requests mark-seen $others
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: requests
+          path: requests.json
